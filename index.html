@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Kill the Stickman</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- LOGIN -->
+    <section id="loginScreen" class="screen">
+
+        <div class="card login-card">
+
+            <div class="logo">⚔️</div>
+
+            <h1>Kill the Stickman</h1>
+
+            <p>
+                Masuk untuk bermain dan menyimpan skor.
+            </p>
+
+            <form id="loginForm">
+
+                <label>
+                    Username
+                    <input
+                        id="username"
+                        type="text"
+                        maxlength="20"
+                        placeholder="Masukkan username"
+                        required>
+                </label>
+
+                <label>
+                    Password
+                    <input
+                        id="password"
+                        type="password"
+                        placeholder="Masukkan password"
+                        required>
+                </label>
+
+                <button class="primary" type="submit">
+                    Masuk & Main
+                </button>
+
+            </form>
+
+            <button
+                id="loginLeaderboardBtn"
+                class="secondary">
+                🏆 Leaderboard
+            </button>
+
+            <p id="loginMessage"></p>
+
+        </div>
+
+    </section>
+
+
+    <!-- MENU UTAMA -->
+    <section id="menuScreen" class="screen hidden">
+
+        <div class="card menu-card">
+
+            <h1>⚔️ Kill the Stickman</h1>
+
+            <p id="welcomeText"></p>
+
+            <p>
+                Lempar tombak dan kalahkan Stickman
+                yang muncul secara random.
+            </p>
+
+            <div class="stats-preview">
+
+                <div>
+                    <b>20</b>
+                    <small>Tombak</small>
+                </div>
+
+                <div>
+                    <b>+20</b>
+                    <small>Score</small>
+                </div>
+
+            </div>
+
+            <button
+                id="startBtn"
+                class="primary big">
+                ▶ Mulai Permainan
+            </button>
+
+            <button
+                id="menuLeaderboardBtn"
+                class="secondary">
+                🏆 Leaderboard
+            </button>
+
+            <button
+                id="logoutBtn"
+                class="link-btn">
+                Keluar
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- GAME -->
+    <section id="gameScreen"
+             class="screen game-screen hidden">
+
+        <header class="hud">
+
+            <div>
+                👤 <b id="hudUser"></b>
+            </div>
+
+            <div>
+                ⭐ <b id="score">0</b>
+            </div>
+
+            <div>
+                🗡️ <b id="spears">20</b>
+            </div>
+
+            <button id="pauseBtn">
+                Ⅱ
+            </button>
+
+            <button id="gameCheatBtn" class="cheat-btn">
+    🎁 Cheat
+</button>
+        </header>
+
+
+        <div class="game-wrap">
+
+            <canvas id="gameCanvas"></canvas>
+
+            <div id="tapHint"
+                 class="tap-hint">
+
+                Klik / tap untuk melempar tombak
+
+            </div>
+
+        </div>
+
+
+        <div class="mobile-controls">
+
+            <button
+                id="throwBtn"
+                class="primary">
+
+                🗡️ LEMPAR
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- PAUSE -->
+    <section id="pauseScreen"
+             class="overlay hidden">
+
+        <div class="card">
+
+            <h2>⏸️ Pause</h2>
+
+            <p>
+                Score:
+                <b id="pauseScore">0</b>
+            </p>
+
+            <p>
+                Tombak:
+                <b id="pauseSpears">20</b>
+            </p>
+
+            <button
+                id="resumeBtn"
+                class="primary">
+
+                ▶ Lanjut
+
+            </button>
+
+            <button
+                id="pauseLeaderboardBtn"
+                class="secondary">
+
+                🏆 Leaderboard
+
+            </button>
+
+            <button
+                id="restartBtn"
+                class="secondary">
+
+                🔄 Mulai Ulang
+
+            </button>
+
+            <button
+                id="pauseMenuBtn"
+                class="link-btn">
+
+                Menu Utama
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- LEADERBOARD -->
+    <section id="leaderboardScreen"
+             class="overlay hidden">
+
+        <div class="card leaderboard-card">
+
+            <div class="leader-head">
+
+                <h2>🏆 Leaderboard</h2>
+
+                <button
+                    id="closeLeaderboardBtn">
+                    ✕
+                </button>
+
+            </div>
+
+            <div id="leaderboardList">
+
+                <div class="loading">
+                    Memuat leaderboard...
+                </div>
+
+            </div>
+
+            <button
+                id="refreshLeaderboardBtn"
+                class="secondary">
+
+                🔄 Refresh
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- CHEAT -->
+    <section id="cheatModal"
+             class="overlay hidden">
+
+        <div class="card">
+
+            <h2>🎁 Cheat</h2>
+
+            <p>
+                Masukkan kode cheat.
+            </p>
+
+            <input
+                id="cheatInput"
+                type="text"
+                placeholder="Kode cheat">
+
+            <button
+                id="cheatSubmit"
+                class="primary">
+
+                Aktifkan
+
+            </button>
+
+            <button
+                id="cheatClose"
+                class="link-btn">
+
+                Tutup
+
+            </button>
+
+            <p id="cheatMessage"></p>
+
+        </div>
+
+    </section>
+
+
+    <div id="toast" class="toast"></div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
